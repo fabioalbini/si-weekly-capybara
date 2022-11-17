@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Products / Product Details', type: :system do
-  it 'logs in successfully' do
+  it 'displays details for selected product' do
     # TODO
     # Go to the product listing page
     # Search for Product 20
