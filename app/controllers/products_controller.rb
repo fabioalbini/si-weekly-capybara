@@ -5,15 +5,22 @@ class ProductsController < ApplicationController
     @products = 25.times.map do |i|
       new_product(id: i, name: "Product #{i}")
     end
+
+    @query = params[:query]
+    @products = @products.select { |p| p.name.include?(@query) } if @query.present?
   end
 
   def show
-    @product = new_product(id: params[:id], name: "Product #{params[:id]}")
+    @product = new_product(
+      id: params[:id],
+      name: "Product #{params[:id]}",
+      description: "Description #{params[:id]}"
+    )
   end
 
   private
 
-  def new_product(id:, name:)
-    OpenStruct.new(id:, name:)
+  def new_product(id:, name:, description: '')
+    OpenStruct.new(id:, name:, description:)
   end
 end
